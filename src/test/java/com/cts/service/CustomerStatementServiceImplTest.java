@@ -15,6 +15,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.cts.dto.RaboResponse;
 import com.cts.model.CustomerStatement;
 import com.cts.util.CustomerServiceEnum;
+import java.math.BigDecimal;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerStatementServiceImplTest {
@@ -30,9 +32,9 @@ public class CustomerStatementServiceImplTest {
 		List<CustomerStatement> transactions = Arrays.asList(CustomerStatement.builder()
 																			.reference(111l)
 																			.accountNumber("1212")
-																			.startBalance(10d)
-																			.mutation(-5d)
-																			.endBalance(5d)
+																			.startBalance(new BigDecimal("123"))
+																			.mutation(new BigDecimal("123"))
+																			.endBalance(new BigDecimal("123"))
 																			.description("Sample")
 																			.build());
 		RaboResponse response = customerService.processTransactions(transactions);
@@ -42,21 +44,27 @@ public class CustomerStatementServiceImplTest {
 	@Test
 	public void testDuplicateReferenceTransactions() { 
 		
+		BigDecimal startBalance = new BigDecimal("123");
+		BigDecimal mutationBalance = new BigDecimal("123");
+
+		BigDecimal endBalance = new BigDecimal("123");
+
+		
 		CustomerStatement statement1 = CustomerStatement.builder()
 		.reference(111l)
 		.accountNumber("1212")
-		.startBalance(10d)
-		.mutation(-5d)
-		.endBalance(5d)
+		.startBalance(startBalance)
+		.mutation(mutationBalance)
+		.endBalance(endBalance)
 		.description("Duplicate Reference")
 		.build();
 		
 		CustomerStatement statement2 = CustomerStatement.builder()
 				.reference(111l)
 				.accountNumber("1213")
-				.startBalance(10d)
-				.mutation(-5d)
-				.endBalance(5d)
+				.startBalance(startBalance)
+				.mutation(mutationBalance)
+				.endBalance(endBalance)
 				.description("Duplicate Reference")
 				.build();
 		
@@ -67,4 +75,6 @@ public class CustomerStatementServiceImplTest {
 		RaboResponse response = customerService.processTransactions(transactions);
 		assertEquals(CustomerServiceEnum.DUPLICATE_REFERENCE.toString() ,response.getResult());
 	}
+	
+	
 }

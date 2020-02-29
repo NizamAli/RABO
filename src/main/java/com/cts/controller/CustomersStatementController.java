@@ -33,7 +33,7 @@ public class CustomersStatementController {
 	
 	
 	@PostMapping(value = "/statement")
-	public ResponseEntity createCustomer(@RequestBody List<CustomerStatement> transactions) {
+	public ResponseEntity processTransactions(@RequestBody List<CustomerStatement> transactions) {
 		RaboResponse response = null;
 		if(transactions.isEmpty()) {
 			response = new RaboResponse();
