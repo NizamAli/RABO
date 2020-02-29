@@ -2,7 +2,9 @@ package com.cts.controller;
 
 import java.util.List;
 
+import com.cts.dto.RaboResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,10 +32,8 @@ public class CustomersStatementController {
 	
 	@PostMapping(value = "/statement")
 	public ResponseEntity createCustomer(@RequestBody List<CustomerStatement> transactions) {
-
-		customerStatementService.processTransactions(transactions);
-		
-		return null;
+        RaboResponse response = customerStatementService.processTransactions(transactions);
+        return new ResponseEntity(response, HttpStatus.OK);
 	}
 
 
