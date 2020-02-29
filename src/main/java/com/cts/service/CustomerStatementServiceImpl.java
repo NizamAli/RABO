@@ -8,7 +8,6 @@ public class CustomerStatementServiceImpl implements CustomerStatementService {
 
 	@Override
 	public void processTransactions(List<CustomerStatement> transactions) {
-		// TODO Auto-generated method stub
 		
 	}
 
