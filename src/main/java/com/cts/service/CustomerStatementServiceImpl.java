@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.cts.dto.RaboResponse;
 import com.cts.model.CustomerStatement;
 import com.cts.model.ErrorRecord;
+import com.cts.util.CustomerServiceEnum;
 
 public class CustomerStatementServiceImpl implements CustomerStatementService {
 
@@ -24,10 +25,12 @@ public class CustomerStatementServiceImpl implements CustomerStatementService {
 		boolean isDuplicatePresent = false;
 		if (!duplicateRefereces.isEmpty()) {
 			isDuplicatePresent = true;
-
+			response.getErrorRecords().addAll(duplicateRefereces);
+			response.setResult(CustomerServiceEnum.DUPLICATE_REFERENCE.toString());
 		}
 		if (!inCorrectBalanceRecords.isEmpty()) {
-
+			response.getErrorRecords().addAll(inCorrectBalanceRecords);
+			response.setResult(isDuplicatePresent? CustomerServiceEnum.DUPLICATE_REFERENCE_INCORRECT_END_BALANCE.toString(): CustomerServiceEnum.INCORRECT_END_BALANCE.toString());
 		}
 
 		return response;
