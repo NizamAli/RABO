@@ -3,6 +3,7 @@ package com.cts.dto;
 import com.cts.model.CustomerStatement;
 import com.cts.model.ErrorRecord;
 
+import com.cts.util.CustomerServiceEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import java.util.List;
 @Setter
 @Getter
 public class RaboResponse {
-    String result;
+    String result = CustomerServiceEnum.SUCCESSFUL.toString();
     List<ErrorRecord> errorRecords = new ArrayList();
 
 }
