@@ -3,7 +3,6 @@ package com.cts.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +32,7 @@ public class CustomersStatementController {
 	public ResponseEntity createCustomer(@RequestBody List<CustomerStatement> transactions) {
 
 		customerStatementService.processTransactions(transactions);
+		
 		return null;
 	}
 
