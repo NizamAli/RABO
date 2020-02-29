@@ -39,7 +39,7 @@ public class CustomersStatementController {
 			response = new RaboResponse();
 			response.setResult(CustomerServiceEnum.BAD_REQUEST.toString());
 			response.setErrorRecords(new ArrayList<ErrorRecord>());
-			return new ResponseEntity(response, HttpStatus.OK);
+			return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
 
 		}
         response = customerStatementService.processTransactions(transactions);
