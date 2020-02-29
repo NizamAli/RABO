@@ -30,10 +30,10 @@ public class CustomersStatementController {
 	
 	
 	@PostMapping(value = "/statement")
-	public ResponseEntity createCustomer(@RequestBody List<CustomerStatement> customer) {
+	public ResponseEntity createCustomer(@RequestBody List<CustomerStatement> transactions) {
 
-
-		return new ResponseEntity(customer, HttpStatus.OK);
+		customerStatementService.processTransactions(transactions);
+		return null;
 	}
 
 
