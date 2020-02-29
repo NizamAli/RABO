@@ -9,7 +9,9 @@ import com.cts.dto.RaboResponse;
 import com.cts.model.CustomerStatement;
 import com.cts.model.ErrorRecord;
 import com.cts.util.CustomerServiceEnum;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerStatementServiceImpl implements CustomerStatementService {
 
 	@Override

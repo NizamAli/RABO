@@ -1,14 +1,12 @@
 package com.cts.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerStatement {
     private Long reference;
     private String accountNumber;
@@ -18,6 +16,8 @@ public class CustomerStatement {
     private Double endBalance;
 
     public boolean validEndBalance() {
+        System.out.println(this.getEndBalance() +" - " + this.getStartBalance() +" !="+ this.getMutation());
+        System.out.println(this.getEndBalance() - this.getStartBalance());
         return this.getEndBalance() - this.getStartBalance() != this.getMutation();
     }
 
